@@ -17,6 +17,7 @@
     <modules>
         <module>eureka-server</module>
         <module>ms-system</module>
+        <module>ms-customer</module>
     </modules>
 
     <properties>
@@ -40,8 +41,9 @@
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
+
+
 
     <build>
         <plugins>
