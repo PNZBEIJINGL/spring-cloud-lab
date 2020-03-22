@@ -12,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 把CustomRealm和SecurityManager等加入到spring容器
+ */
+
 @Configuration
 public class ShiroConfig {
 
