@@ -1,5 +1,8 @@
 package com.lab.bean;
 
+/**
+ * 权限实体
+ */
 public class Permissions {
     private String id;
     private String permissionsName;

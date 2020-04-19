@@ -2,6 +2,9 @@ package com.lab.bean;
 
 import java.util.Set;
 
+/**
+ * 用户实体
+ */
 public class User {
     private String id;
     private String userName;

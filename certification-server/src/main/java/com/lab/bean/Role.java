@@ -2,6 +2,9 @@ package com.lab.bean;
 
 import java.util.Set;
 
+/**
+ * 角色实体
+ */
 public class Role {
     private String id;
     private String roleName;

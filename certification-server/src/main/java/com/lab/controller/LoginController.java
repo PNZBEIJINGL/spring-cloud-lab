@@ -26,7 +26,7 @@ public class LoginController {
             //进行验证，这里可以捕获异常，然后返回对应信息
             subject.login(usernamePasswordToken);
 //            subject.checkRole("admin");
-//            subject.checkPermissions("query", "add");
+            subject.checkPermissions("query", "add");
         } catch (AuthenticationException e) {
             e.printStackTrace();
             return "账号或密码错误！";
