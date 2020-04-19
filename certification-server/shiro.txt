@@ -17,3 +17,8 @@
 9. Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问。
 
 10. Remember Me：记住我，登录后，下次再来的话不用登录了。
+
+
+
+学习参考资料：
+springboot整合shiro（完整版）： https://www.jianshu.com/p/7f724bec3dc3
