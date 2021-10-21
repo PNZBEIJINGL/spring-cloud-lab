@@ -48,6 +48,9 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+
+        //可以自定义过滤器
+        //shiroFilterFactoryBean.setFilters();
         Map<String, String> map = new HashMap<>();
         //登出
         map.put("/logout", "logout");
