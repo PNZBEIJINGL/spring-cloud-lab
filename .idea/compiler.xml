@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-server" />
-        <module name="certification-server" />
-        <module name="ms-system" />
         <module name="ms-customer" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="certification-server" target="1.8" />
+      <module name="ms-system" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

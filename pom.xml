@@ -15,9 +15,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>certification-server</module>
         <module>eureka-server</module>
-        <module>ms-system</module>
         <module>ms-customer</module>
     </modules>
 

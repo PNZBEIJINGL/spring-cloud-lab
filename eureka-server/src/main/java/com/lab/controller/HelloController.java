@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 public class HelloController {
@@ -21,7 +22,7 @@ public class HelloController {
     public String index(){
        // ServiceInstance instance=client.getLocalServiceInstance();
        // logger.info("host:"+instance.getHost()+" ,service_id"+instance.getServiceId());
-        return LocalDate.now().toString();
+        return LocalDateTime.now().toString();
     }
 
 
