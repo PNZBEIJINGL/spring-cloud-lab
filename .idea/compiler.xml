@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="certification-server" />
         <module name="eureka-server" />
-        <module name="ms-customer" />
+        <module name="certification-server" />
         <module name="ms-system" />
+        <module name="ms-customer" />
       </profile>
     </annotationProcessing>
   </component>

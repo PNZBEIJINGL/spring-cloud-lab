@@ -1,17 +1,14 @@
 package com.lab;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
- * CustomerApplication
- * SpringBootApplication默认扫描CustomerApplication所在包所以需要scanBasePackages制定包名
+ *
+ * @EnableEurekaServer注解激活Eureka中的DiscouverClient实现
+ * @SpringBootApplication默认扫描CustomerApplication所在包所以需要scanBasePackages制定包名
  */
-@EnableEurekaServer
+//@EnableEurekaServer
 @SpringBootApplication
 public class EurekaApplication {
 
