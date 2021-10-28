@@ -1,0 +1,56 @@
+package com.customer.controller;
+
+import com.customer.CustomerDTO;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController()
+@RequestMapping(path = "/customer")
+public class CustomerController {
+
+    private final Logger logger = Logger.getLogger(getClass());
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
+
+    /**
+     * http://127.0.0.1:8001/customer/name/1
+     */
+    @RequestMapping(value = "/name/{id}", method = RequestMethod.GET)
+    public String getCustomerName(@PathVariable("id") Long customerId) {
+        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId();
+        logger.info(message);
+
+        CustomerDTO customer = mockCustomer();
+        return customer.getName();
+    }
+
+    /**
+     * http://127.0.0.1:8001/customer/1
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public CustomerDTO getCustomer(@PathVariable("id") Long customerId) {
+        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId();
+        logger.info(message);
+
+        CustomerDTO customer = mockCustomer();
+        return customer;
+    }
+
+    private CustomerDTO mockCustomer() {
+        CustomerDTO customer = new CustomerDTO();
+        customer.setId(1000L);
+        customer.setCode("1000");
+        customer.setName("zhangsan");
+        return customer;
+    }
+}

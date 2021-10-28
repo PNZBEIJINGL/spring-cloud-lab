@@ -20,7 +20,7 @@ public class InfoController {
     private DiscoveryClient discoveryClient;
 
     /**
-     * http://127.0.0.1:1111/info/
+     * http://127.0.0.1:8001/info/
      */
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public String into() {

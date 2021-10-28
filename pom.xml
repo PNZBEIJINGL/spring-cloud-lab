@@ -17,6 +17,7 @@
     <modules>
         <module>eureka-peer</module>
         <module>ms-customer</module>
+        <module>ms-customer_interface</module>
         <module>ms-ribbon-consumer</module>
     </modules>
 
