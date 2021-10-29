@@ -46,6 +46,24 @@ public class CustomerController {
         return customer;
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addCustomer(CustomerDTO customerDTO) {
+        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId() + "<br> add Customer OK";
+        logger.info(message);
+
+        return message;
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public String deleteCustomer(@PathVariable("id") Long customerId) {
+        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
+        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId() + "<br> delete Customer OK";
+        logger.info(message);
+
+        return message;
+    }
+
     private CustomerDTO mockCustomer() {
         CustomerDTO customer = new CustomerDTO();
         customer.setId(1000L);

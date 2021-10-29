@@ -26,6 +26,7 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
 
+        <!--引入Spring Cloud Ribbon负载均衡 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-ribbon</artifactId>

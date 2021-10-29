@@ -14,78 +14,77 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 测试ResultTemplate POST 请求
+ */
 @RestController
 public class ConsumerController {
 
     @Autowired
     RestTemplate restTemplate;
 
-    /**
-     * http://127.0.0.1:8002/ribbon-consumer-ping
-     */
-    @RequestMapping(value = "/ribbon-customer-ping", method = RequestMethod.GET)
-    public String pingConsumer() {
-        return restTemplate.getForEntity
-                ("http://MS-CUSTOMER/info", String.class).getBody();
-    }
 
     /**
-     * http://127.0.0.1:8002/ribbon-consumer-name
-     *
-     * @return
-     */
-    @RequestMapping(value = "/ribbon-consumer-name", method = RequestMethod.GET)
-    public String getConsumerName() {
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity
-                ("http://MS-CUSTOMER/customer/name/1", String.class, "1");
-        return responseEntity.getBody();
-    }
-
-    /**
-     * http://127.0.0.1:8002/ribbon-consumer-1
+     * http://127.0.0.1:8002/ribbon-consumer-add1
      *
      * @return
      * @restTemplate.getForEntity 重载1测试
      */
-    @RequestMapping(value = "/ribbon-consumer-1", method = RequestMethod.GET)
-    public CustomerDTO getConsumer1() {
-        ResponseEntity<CustomerDTO> responseEntity = restTemplate.getForEntity
-                ("http://MS-CUSTOMER/customer/{1}", CustomerDTO.class, "1");
-        CustomerDTO customerDT = responseEntity.getBody();
-        return customerDT;
+    @RequestMapping(value = "/ribbon-consumer-add1", method = RequestMethod.GET)
+    public String addCustomer1() {
+
+        CustomerDTO customerDTO = mockCustomer();
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity
+                ("http://MS-CUSTOMER/customer/add", customerDTO, String.class);
+        return responseEntity.getBody();
     }
 
     /**
-     * http://127.0.0.1:8002/ribbon-consumer-1
+     * http://127.0.0.1:8002/ribbon-consumer-add2
      *
      * @return
      * @restTemplate.getForEntity 重载2测试
      */
-    @RequestMapping(value = "/ribbon-consumer-2", method = RequestMethod.GET)
-    public CustomerDTO getConsumer2() {
-        Map<String, String> params = new HashMap<>();
-        params.put("id", "1");
-        ResponseEntity<CustomerDTO> responseEntity = restTemplate.getForEntity
-                ("http://MS-CUSTOMER/customer/{id}", CustomerDTO.class, params);
-        CustomerDTO customerDT = responseEntity.getBody();
-        return customerDT;
+    @RequestMapping(value = "/ribbon-consumer-add2", method = RequestMethod.GET)
+    public String addCustomer2() {
+        CustomerDTO customerDTO = mockCustomer();
+        String str = restTemplate.postForObject
+                ("http://MS-CUSTOMER/customer/add", customerDTO, String.class);
+        return str;
     }
 
     /**
-     * http://127.0.0.1:8002/ribbon-consumer-1
+     * http://127.0.0.1:8002/ribbon-consumer-add3
      *
      * @return
      * @restTemplate.getForEntity 重载3测试
      */
-    @RequestMapping(value = "/ribbon-consumer-3", method = RequestMethod.GET)
-    public CustomerDTO getConsumer3() {
-        UriComponents uriComponents = UriComponentsBuilder.fromUriString("http://MS-CUSTOMER/customer/{id}")
-                .build().expand("1")
-                .encode();
-        URI uri = uriComponents.toUri();
-        ResponseEntity<CustomerDTO> responseEntity = restTemplate.getForEntity(uri, CustomerDTO.class);
-        CustomerDTO customerDT = responseEntity.getBody();
-        return customerDT;
+    @RequestMapping(value = "/ribbon-consumer-add3", method = RequestMethod.GET)
+    public String addCustomer3() {
+        CustomerDTO customerDTO = mockCustomer();
+        URI responseURI = restTemplate.postForLocation("http://MS-CUSTOMER/customer/add", customerDTO);
+        return "OK";
+    }
+
+    /**
+     * http://127.0.0.1:8002/ribbon-consumer-delete
+     *
+     * @return
+     * @restTemplate.getForEntity 重载3测试
+     */
+    @RequestMapping(value = "/ribbon-consumer-delete", method = RequestMethod.GET)
+    public String delete() {
+        Long customerId=1000L;
+        restTemplate.delete("http://MS-CUSTOMER/customer/delete/{1}",customerId);
+        return "DELETE OK";
+    }
+
+    private CustomerDTO mockCustomer() {
+        CustomerDTO customer = new CustomerDTO();
+        customer.setId(1000L);
+        customer.setCode("1000");
+        customer.setName("zhangsan");
+        return customer;
     }
 
 }
