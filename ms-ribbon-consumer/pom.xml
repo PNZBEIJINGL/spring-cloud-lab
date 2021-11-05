@@ -32,6 +32,13 @@
             <artifactId>spring-cloud-starter-ribbon</artifactId>
         </dependency>
 
+        <!--引入Spring Cloud Hystrix 熔断器 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>spring.cloud.test</groupId>
             <artifactId>ms-customer-interface</artifactId>

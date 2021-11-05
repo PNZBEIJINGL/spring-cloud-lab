@@ -1,6 +1,7 @@
 package com.ribbon.controller;
 
 import com.customer.CustomerDTO;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,14 +35,19 @@ public class ConsumerQueryController {
 
     /**
      * http://127.0.0.1:8002/ribbon-consumer-name
-     *
+     * 其中@HystrixCommand注解指定回调的方法
      * @return
      */
     @RequestMapping(value = "/ribbon-consumer-name", method = RequestMethod.GET)
-    public String getConsumerName() {
+    @HystrixCommand(fallbackMethod = "getCustomerNameFallback")
+    public String testGetCustomerName() {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity
                 ("http://MS-CUSTOMER/customer/name/1", String.class, "1");
         return responseEntity.getBody();
+    }
+
+    public String getCustomerNameFallback(){
+        return "getCustomerName ，因故障Hystrix熔断";
     }
 
     /**
@@ -59,7 +65,7 @@ public class ConsumerQueryController {
     }
 
     /**
-     * http://127.0.0.1:8002/ribbon-consumer-1
+     * http://127.0.0.1:8002/ribbon-consumer-2
      *
      * @return
      * @restTemplate.getForEntity 重载2测试

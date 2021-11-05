@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @RestController()
 @RequestMapping(path = "/customer")
 public class CustomerController {
@@ -24,7 +26,11 @@ public class CustomerController {
      * http://127.0.0.1:8001/customer/name/1
      */
     @RequestMapping(value = "/name/{id}", method = RequestMethod.GET)
-    public String getCustomerName(@PathVariable("id") Long customerId) {
+    public String getCustomerName(@PathVariable("id") Long customerId) throws InterruptedException {
+        //测试阻塞几秒
+        int sleepTime=new Random().nextInt(4000);
+        Thread.sleep(sleepTime);
+
         ServiceInstance instance = discoveryClient.getLocalServiceInstance();
         String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId();
         logger.info(message);
