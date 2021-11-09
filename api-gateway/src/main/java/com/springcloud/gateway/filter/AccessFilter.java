@@ -46,8 +46,8 @@ public class AccessFilter extends ZuulFilter {
 
         Object accessTocken = request.getParameter("accessTocken");
         if (accessTocken == null) {
-            requestContext.setSendZuulResponse(false);
-            requestContext.setResponseStatusCode(401);
+           // requestContext.setSendZuulResponse(false);
+           // requestContext.setResponseStatusCode(401);
             return null;
         }
         return null;
