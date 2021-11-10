@@ -38,8 +38,8 @@ public class ConsumerQueryController {
      * 其中@HystrixCommand注解指定回调的方法
      * @return
      */
-    @RequestMapping(value = "/ribbon-consumer-name", method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "getCustomerNameFallback")
+    @RequestMapping(value = "/ribbon-consumer-name", method = RequestMethod.GET)
     public String testGetCustomerName() {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity
                 ("http://MS-CUSTOMER/customer/name/1", String.class, "1");

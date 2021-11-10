@@ -28,11 +28,11 @@ public class CustomerController {
     @RequestMapping(value = "/name/{id}", method = RequestMethod.GET)
     public String getCustomerName(@PathVariable("id") Long customerId) throws InterruptedException {
         //测试阻塞几秒
-        int sleepTime=new Random().nextInt(4000);
+        int sleepTime=new Random().nextInt(3000);
         Thread.sleep(sleepTime);
 
         ServiceInstance instance = discoveryClient.getLocalServiceInstance();
-        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId();
+        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId()+ " "+sleepTime;
         logger.info(message);
 
         CustomerDTO customer = mockCustomer();
