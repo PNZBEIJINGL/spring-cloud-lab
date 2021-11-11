@@ -6,13 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-server" />
+        <module name="hystrix-turbine" />
+        <module name="ms-ribbon-consumer" />
+        <module name="ms-customer_interface" />
+        <module name="eureka-peer" />
+        <module name="hystrix-dashboard" />
         <module name="ms-customer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="certification-server" target="1.8" />
       <module name="ms-system" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-peer2" options="-parameters" />
+      <module name="hystrix-dashboard" options="" />
+      <module name="ms-customer_interface" options="" />
+      <module name="ms-ribbon-consumer" options="" />
+    </option>
   </component>
 </project>

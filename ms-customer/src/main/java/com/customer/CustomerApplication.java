@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerApplication {
 
     public static void main(String[] args) {
-        System.out.println("Customer：http://127.0.0.1:8001/");
         SpringApplication.run(CustomerApplication.class, args);
     }
 

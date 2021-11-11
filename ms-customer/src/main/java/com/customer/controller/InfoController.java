@@ -20,14 +20,11 @@ public class InfoController {
     private DiscoveryClient discoveryClient;
 
     /**
-     * http://127.0.0.1:8001/info/
+     * http://127.0.0.1:8001/time/
      */
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
-    public String into() {
-        ServiceInstance instance = discoveryClient.getLocalServiceInstance();
-        String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId();
-        logger.info(message);
+    @RequestMapping(value = "/time", method = RequestMethod.GET)
+    public String time() {
 
-        return  message+" Time:"+new Date().toString();
+        return  new Date().toString();
     }
 }
