@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/ms-customer_interface/pom.xml" />
         <option value="$PROJECT_DIR$/hystrix-dashboard/pom.xml" />
         <option value="$PROJECT_DIR$/hystrix-turbine/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix-turbine-amqp/pom.xml" />
+        <option value="$PROJECT_DIR$/feign-consumer/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
