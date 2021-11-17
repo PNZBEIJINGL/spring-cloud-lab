@@ -21,7 +21,7 @@ public class TestController implements ICustomerService {
     @Override
     public CustomerDTO getCustomerById(@PathVariable("id") Long id) throws InterruptedException {
         //测试阻塞几秒
-        int sleepTime = new Random().nextInt(6000);
+        int sleepTime = new Random().nextInt(3000);
         Thread.sleep(sleepTime);
 
         CustomerDTO customer = mockCustomer();
@@ -32,7 +32,7 @@ public class TestController implements ICustomerService {
     @Override
     public CustomerDTO addCustomer(@RequestBody CustomerDTO customerDTO) throws InterruptedException {
         //测试阻塞几秒
-        int sleepTime = new Random().nextInt(5000);
+        int sleepTime = new Random().nextInt(3000);
         Thread.sleep(sleepTime);
 
         CustomerDTO customer = customerDTO;
