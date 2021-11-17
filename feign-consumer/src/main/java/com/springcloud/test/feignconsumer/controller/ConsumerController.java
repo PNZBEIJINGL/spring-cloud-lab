@@ -12,9 +12,15 @@ public class ConsumerController {
     @Autowired
     private CustomerService customerService;
 
-    //http://127.0.0.1:8003/feign-customer
-    @RequestMapping(value = "/feign-customer",method = RequestMethod.GET)
+    //http://127.0.0.1:8003/feign-ping
+    @RequestMapping(value = "/feign-ping",method = RequestMethod.GET)
     public String testMSCustomer(){
         return customerService.time();
+    }
+
+    //http://127.0.0.1:8003/feign-customer
+    @RequestMapping(value = "/feign-customer", method = RequestMethod.GET)
+    public String  testGetCustomerName(){
+        return customerService.getCustomerById(999L);
     }
 }

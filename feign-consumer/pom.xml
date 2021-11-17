@@ -26,7 +26,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
@@ -36,6 +35,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>spring.cloud.test</groupId>
+            <artifactId>ms-customer-interface</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

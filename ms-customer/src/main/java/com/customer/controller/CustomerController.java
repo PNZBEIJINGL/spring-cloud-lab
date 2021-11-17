@@ -33,9 +33,10 @@ public class CustomerController {
 
         ServiceInstance instance = discoveryClient.getLocalServiceInstance();
         String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId()+ " "+sleepTime;
-        logger.info(message);
+        logger.info(message + " "+sleepTime);
 
         CustomerDTO customer = mockCustomer();
+        customer.setId(customerId);
         return customer.getName();
     }
 
@@ -43,12 +44,17 @@ public class CustomerController {
      * http://127.0.0.1:8001/customer/1
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CustomerDTO getCustomer(@PathVariable("id") Long customerId) {
+    public CustomerDTO getCustomer(@PathVariable("id") Long customerId) throws InterruptedException {
+        //测试阻塞几秒
+        int sleepTime=new Random().nextInt(4000);
+        Thread.sleep(sleepTime);
+
         ServiceInstance instance = discoveryClient.getLocalServiceInstance();
         String message = " host:" + instance.getHost() + ",service_id:" + instance.getServiceId();
-        logger.info(message);
+        logger.info(message + " "+sleepTime);
 
         CustomerDTO customer = mockCustomer();
+        customer.setId(customerId);
         return customer;
     }
 
