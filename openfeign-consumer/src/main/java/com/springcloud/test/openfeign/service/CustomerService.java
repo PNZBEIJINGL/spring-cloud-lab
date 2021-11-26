@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 //@FeignClient(value = "MS-CUSTOMER")
-@FeignClient(name = "${customer.server.name}" ,fallback = CustomerService.CustomerServiceFallback.class)
+//@FeignClient(name = "${customer.server.name}" ,fallback = CustomerService.CustomerServiceFallback.class)
+@FeignClient(name = "${customer.server.name}" ,fallbackFactory  = CustomerService.CustomerServiceFallbackFactory.class)
 public interface CustomerService {
 
     //不带参数
@@ -19,20 +20,38 @@ public interface CustomerService {
     @RequestMapping(value = "/customer/{id}" ,method = RequestMethod.GET)
     public String getCustomerById(@RequestParam("id") Long id);
 
-
-
-    static class CustomerServiceFallback implements CustomerService{
+    /*
+    @Component
+    class CustomerServiceFallback implements CustomerService{
 
         @Override
         public String time() {
-            return null;
+            return "fallback";
         }
 
         @Override
         public String getCustomerById(Long id) {
-            return null;
+            return "fallback";
         }
     }
+    */
 
+    static class CustomerServiceFallbackFactory implements FallbackFactory<CustomerService> {
 
+        @Override
+        public CustomerService create(final Throwable cause) {
+            return new CustomerService() {
+                @Override
+                public String time() {
+                    return "fallback,cause:" + cause.getMessage();
+                }
+
+                @Override
+                public String getCustomerById(Long id) {
+                    return "fallback,cause:" + cause.getMessage();
+                }
+            };
+        }
+
+    }
 }
