@@ -4,8 +4,10 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.zuul.util.ZuulRuntimeException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class AccessFilter extends ZuulFilter {
 
@@ -27,6 +29,7 @@ public class AccessFilter extends ZuulFilter {
     /**
      * 同类型过滤器自然顺序执行
      * 返回值越小，执行顺序越优先
+     *
      * @return
      */
     @Override
@@ -44,12 +47,50 @@ public class AccessFilter extends ZuulFilter {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
 
-        Object accessTocken = request.getParameter("accessTocken");
-        if (accessTocken == null) {
-           // requestContext.setSendZuulResponse(false);
-           // requestContext.setResponseStatusCode(401);
+        Object accessTocken = request.getParameter("tocken");
+        if (accessTocken != null) {
+            //1.测试过滤器验证，只有888888返回401
+            if ("888888".equals(accessTocken)) {
+                requestContext.setSendZuulResponse(false);
+                requestContext.setResponseStatusCode(401);
+                return null;
+            }
+            //2.测试直接拋出自定义异常
+            if ("000000".equals(accessTocken)) {
+                doSomeThing();
+                return null;
+            }
+            //3.测试直接抛出 ZuulRuntimeException 异常
+            if ("111111".equals(accessTocken)) {
+                try {
+                    throw new RuntimeException("In AccessFilter,Error testing,");
+                } catch (Exception e) {
+                    throw new ZuulRuntimeException(e);
+                }
+            }
+
+
+            //4.测试try-catch
+            if ("123456".equals(accessTocken)) {
+                try {
+                    throw new RuntimeException("In AccessFilter,Error testing,");
+                } catch (Exception e) {
+                    requestContext.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    requestContext.setThrowable(e);
+                }
+                return null;
+            }
+
+
             return null;
         }
         return null;
     }
+
+    private void doSomeThing() {
+        log.error("AccessFilter error");
+        throw new RuntimeException("In AccessFilter,Error testing,");
+    }
+
+
 }
