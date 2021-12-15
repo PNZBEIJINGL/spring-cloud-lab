@@ -15,14 +15,18 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>api-gateway</module>
+        <module>config-server</module>
         <module>eureka-peer</module>
+        <module>feign-consumer</module>
         <module>hystrix-dashboard</module>
         <module>hystrix-turbine</module>
         <module>hystrix-turbine-amqp</module>
         <module>ms-customer</module>
         <module>ms-customer_interface</module>
         <module>ms-ribbon-consumer</module>
-        <module>feign-consumer</module>
+        <module>openfeign-consumer</module>
+
     </modules>
 
     <properties>
