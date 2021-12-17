@@ -11,8 +11,8 @@
     <groupId>com.stpringcloud.test</groupId>
     <artifactId>config-client</artifactId>
     <version>1.0.0</version>
-    <name>config-server</name>
-    <description>Demo project for Spirng Cloud Config</description>
+    <name>config-client</name>
+    <description>Demo project for Spirng Cloud Clinet</description>
 
     <properties>
         <java.version>11</java.version>

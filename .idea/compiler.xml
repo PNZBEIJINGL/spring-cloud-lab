@@ -7,27 +7,31 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hystrix-turbine" />
+        <module name="config-server" />
         <module name="ms-ribbon-consumer" />
         <module name="ms-customer_interface" />
         <module name="eureka-peer" />
         <module name="hystrix-dashboard" />
-        <module name="feign-consumer" />
+        <module name="openfeign-consumer" />
         <module name="ms-customer" />
+        <module name="config-client" />
+        <module name="feign-consumer" />
+        <module name="api-gateway" />
         <module name="hystrix-turbine-amqp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ms-system" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="eureka-peer2" options="-parameters" />
+      <module name="api-gateway" options="" />
+      <module name="config-client" options="" />
+      <module name="config-server" options="" />
       <module name="feign-consumer" options="" />
       <module name="hystrix-dashboard" options="" />
       <module name="hystrix-turbine-amqp" options="" />
       <module name="ms-customer_interface" options="" />
       <module name="ms-ribbon-consumer" options="" />
+      <module name="openfeign-consumer" options="" />
     </option>
   </component>
 </project>
