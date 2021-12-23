@@ -39,6 +39,13 @@
         </dependency>
         <!-- 失败重试 -->
 
+        <!-- actuator监控模块包含了 /refresh端点实现，可用于客户端配置重新获取与刷新 -->
+        <!-- 例如 修改Git后通过POST请求http://127.0.0.1:8007/refresh 更新配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
