@@ -12,11 +12,10 @@ public class SinkReceiver {
     private static Logger Log = LoggerFactory.getLogger(SinkReceiver.class);
 
     /**
-     *
      * @param payload 有效载荷,一般指对于接收者有用的数据
      */
     @StreamListener(Sink.INPUT)
     private void receive(Object payload) {
-        Log.info("SinkReceiver:" + payload);
+        Log.info("SinkReceiver:"+ payload);
     }
 }

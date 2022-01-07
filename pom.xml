@@ -28,6 +28,7 @@
         <module>ms-customer_interface</module>
         <module>ms-ribbon-consumer</module>
         <module>openfeign-consumer</module>
+        <module>stream-rabbitmq</module>
 
     </modules>
 
